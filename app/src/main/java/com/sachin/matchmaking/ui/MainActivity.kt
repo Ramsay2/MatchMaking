@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
     }
+
 }

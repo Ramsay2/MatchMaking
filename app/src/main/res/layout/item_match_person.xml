@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="profile"
+            type="com.sachin.matchmaking.ui.adapter.entity.MatchProfileEntity" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toTopOf="@+id/tvName"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{profile.large}" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:text="@{profile.title + ` ` + profile.first + ` ` + profile.last}"
+                android:textColor="@color/material_dynamic_primary50"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tvEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgProfile"
+                tools:text="Random Name" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:text="@{profile.address}"
+                android:textColor="@color/material_dynamic_primary20"
+                app:layout_constraintBottom_toTopOf="@+id/btn_select"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                tools:text="ewewefwefwfw  wge we w " />
+
+            <ImageView
+                android:id="@+id/btn_pass"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/cross_circle"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_select"
+                app:layout_constraintEnd_toStartOf="@+id/btn_select"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:visibility="@{!profile.profileSelected ? View.VISIBLE : View.GONE}"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="@{()-> profile.onDeclinedClicked(profile)}"
+                app:layout_constraintTop_toTopOf="@+id/btn_select"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btn_select"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="24dp"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/check_circle"
+                android:onClick="@{() -> profile.onSelectClicked(profile)}"
+                android:visibility="@{!profile.profileSelected ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_pass"
+                app:layout_constraintTop_toBottomOf="@id/tvEmail"
+                app:layout_constraintBottom_toTopOf="@+id/profile_status"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/profile_status"
+                android:layout_width="4000dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/material_dynamic_primary80"
+                android:backgroundTint="@color/material_dynamic_primary70"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{profile.profileSelected ? View.VISIBLE : View.GONE}"
+                android:text="@{profile.profileStatus}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintTop_toBottomOf="@+id/btn_select"
+                tools:text="Accepted"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

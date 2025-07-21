@@ -29,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "18"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.appdistribution.gradle)
+    implementation(libs.androidx.paging.common.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,6 +66,8 @@ dependencies {
     // Retrofit for API calls
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
 
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -76,6 +78,20 @@ dependencies {
     // Glide
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
-    implementation (libs.retrofit.v290)
-    implementation (libs.converter.gson.v290)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    //Paging
+    implementation(libs.paging.runtime)
+    // Room core library
+    implementation(libs.androidx.room.runtime)
+
+    // Kotlin Extensions and Coroutines support
+    implementation(libs.androidx.room.ktx)
+
+    // Paging 3 support with Room
+    implementation(libs.androidx.room.paging)
+
+    // Room annotation processor
+    kapt(libs.androidx.room.compiler)
 }
